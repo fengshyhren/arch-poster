@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="馮世人｜朝陽科技大學建築系。點選版型、配色、圖面與光影，以單張照片生成含衍生圖面與文字的完整競圖展板提示詞。">
+<title>競圖展板提示詞・完整成品修正版｜馮世人</title>
+<style>
+:root{--page:#f5f5f1;--paper:#fff;--ink:#263e35;--text:#34483e;--muted:#778379;--line:#e3e8df;--green:#345d49;--soft:#edf4eb;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--text);font-family:"Microsoft JhengHei","PingFang TC","Noto Sans CJK TC",system-ui,sans-serif;font-size:15px;line-height:1.6}button,input,textarea{font:inherit}button{color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #91b49b;outline-offset:3px}button:disabled{cursor:not-allowed;opacity:.35}button:not(:disabled){transition:background .15s,border-color .15s,box-shadow .15s}button:not(:disabled):hover{border-color:#9eb59f;background:#f2f6ee}[hidden]{display:none!important}.wrap{max-width:1320px;padding:0 34px;margin:auto}
+header{padding:28px 0 23px;display:flex;gap:16px;align-items:center;border-bottom:1px solid var(--line)}.brand{width:46px;height:49px;flex:none;display:grid;place-items:center;border-radius:11px;background:var(--ink)}.brand svg{width:26px;height:29px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--green);margin-bottom:2px}h1{font-size:27px;letter-spacing:.4px;line-height:1.35;margin:0;color:var(--ink)}.byline{font-size:12px;color:var(--muted);margin-top:4px}
+main{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(330px,1fr);align-items:start;gap:23px;padding:24px 0 30px}.choices{min-width:0;display:grid;gap:14px}.card{border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);padding:21px 23px}.card h2{color:var(--ink);font-size:17px;line-height:1.4;margin:0 0 16px;display:flex;align-items:center;gap:9px}.card h2 small{font-size:12px;font-weight:400;color:var(--muted)}.index{font-size:11px;color:#8e9f8d;font-weight:500;letter-spacing:.7px;margin-right:1px}.label{font-size:12px;color:var(--muted);display:block;margin:15px 0 8px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{min-height:42px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 13px;font-size:14px;line-height:1.45;display:inline-flex;align-items:center;justify-content:center;gap:7px}.chip[aria-pressed=true],.layout[aria-pressed=true],.palette[aria-pressed=true]{color:var(--ink);border-color:#5c8166;background:var(--soft);box-shadow:inset 0 0 0 .5px #5c8166}.chip[aria-pressed=true]:not(:disabled):hover,.layout[aria-pressed=true]:hover,.palette[aria-pressed=true]:hover{background:#e4eee1;border-color:#5c8166}.chips.multi .chip:before{content:'＋';font-size:14px;color:#96a38f;width:12px}.chips.multi .chip[aria-pressed=true]:before{content:'✓';color:var(--green);font-size:13px}.chips.ratios .chip{padding:7px 11px;min-height:38px;font-size:13px}.layouts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.layout{background:#fff;border:1px solid var(--line);border-radius:11px;min-height:96px;padding:11px 3px 9px;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:7px;font-size:12px;white-space:nowrap}.layout svg{width:46px;height:39px}.palettes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.palette{background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 9px;min-height:46px;display:flex;align-items:center;justify-content:flex-start;gap:9px;font-size:13px}.swatches{display:flex;flex:none}.swatches i{width:13px;height:19px}.swatches i:first-child{border-radius:3px 0 0 3px}.swatches i:last-child{border-radius:0 3px 3px 0}.hint{font-size:12px;line-height:1.7;color:var(--muted);margin:10px 0 0;min-height:0}.hint:empty{display:none}.custom-label{font-size:13px;font-weight:500;display:block;color:var(--muted);margin:17px 0 8px}.extra{width:100%;min-height:64px;resize:vertical;display:block;border:1px solid var(--line);background:#fcfdfa;border-radius:9px;padding:10px 12px;font-size:14px;line-height:1.6;color:var(--text)}.extra::placeholder{color:#97a28f}
+.output{position:sticky;top:22px;padding:24px 22px 20px;min-width:0}.output-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.output-head h2{margin:0;font-size:18px}.lang{display:flex;gap:2px;background:#f0f3ec;padding:3px;border-radius:8px}.lang button{min-height:30px;padding:4px 9px;line-height:1.4;background:none;border:0;border-radius:5px;font-size:12px}.lang button[aria-pressed=true]{background:#fff;box-shadow:0 1px 3px #263e3510;color:var(--ink);font-weight:600}.output-caption{font-size:12px;color:var(--muted);margin:0 0 16px}.summary{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:13px}.summary span{padding:3px 8px;background:#f1f5ee;border-radius:5px;font-size:11px;color:#657960}.prompt{display:block;width:100%;height:clamp(280px,calc(100dvh - 435px),600px);min-height:230px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:15px 14px;background:#f9fbf6;line-height:1.9;font-size:13px;color:#445846;overflow-y:auto}.copy{width:100%;background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:10px;padding:12px 15px;min-height:48px;margin:13px 0 0;font-size:15px;font-weight:600;display:flex;align-items:center;gap:9px;justify-content:center}.copy:not(:disabled):hover{background:#3b5a48;border-color:#3b5a48}.copy svg{width:16px;height:16px}.output-note{font-size:11px;color:var(--muted);line-height:1.8;margin:13px 1px 0}.footer{padding:16px 0 24px;border-top:1px solid var(--line);font-size:11px;color:#85917e}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#263e35;color:#fff;z-index:20;max-width:calc(100vw - 32px);padding:11px 18px;border-radius:11px;box-shadow:0 6px 24px #22332222;font-size:14px;line-height:1.6;pointer-events:none}.mobile-result{display:none}.noscript{margin:20px;padding:18px;background:#fff4de;color:#70521b}
+@media(min-width:1400px){.wrap{padding:0 40px}main{gap:26px}}
+@media(max-width:1120px){.wrap{padding:0 24px}main{grid-template-columns:minmax(0,1.65fr) minmax(315px,1fr);gap:17px}.card{padding:19px}.layouts{grid-template-columns:repeat(3,minmax(0,1fr))}.layout{min-height:87px;flex-direction:row;white-space:normal;gap:6px;font-size:11px}.layout svg{width:34px;height:36px;flex:none}.palette{font-size:12px;gap:6px;padding:10px 6px}.swatches i{width:9px}.chip{font-size:13px}}
+@media(max-width:800px){.wrap{padding:0 16px}header{padding:20px 0 18px}h1{font-size:24px}.byline{font-size:11px}main{display:block;padding-top:16px}.choices{gap:12px}.card{padding:19px 18px}.card h2{font-size:17px}.layouts{grid-template-columns:repeat(6,minmax(0,1fr))}.layout{flex-direction:column;min-height:90px;font-size:11px;gap:7px}.layout svg{width:42px}.chip{font-size:14px;min-height:43px}.palette{font-size:13px;padding:12px 9px;gap:8px}.swatches i{width:12px}.output{position:static;margin-top:15px;scroll-margin-top:15px}.prompt{height:330px;font-size:14px}.copy{min-height:50px}.output-note{font-size:12px}.mobile-result{display:block;position:fixed;right:16px;bottom:14px;z-index:10;text-decoration:none;color:#fff;background:var(--ink);border-radius:100px;padding:11px 16px;font-size:13px;box-shadow:0 4px 13px #263e3525}.footer{padding-bottom:80px}.toast{bottom:74px}}
+@media(max-width:520px){.wrap{padding:0 12px}.card{padding:18px 15px}.layouts{grid-template-columns:repeat(3,minmax(0,1fr))}.layout{min-height:85px;flex-direction:row;gap:7px;font-size:12px}.layout svg{width:35px;height:38px}.palettes{grid-template-columns:repeat(2,minmax(0,1fr))}.palette{font-size:13px}.chip{padding:8px 11px}.chips{gap:7px}.brand{width:41px;height:46px}header{gap:12px}h1{font-size:23px}.eyebrow{font-size:9px;letter-spacing:1.5px}.chips.ratios .chip{font-size:12px;padding:7px 9px}.output{padding:20px 17px}}
+@media(prefers-reduced-motion:reduce){button:not(:disabled){transition:none}}
+</style>
+</head>
+<body>
+<noscript><div class="noscript">請使用可執行 JavaScript 的瀏覽器開啟此工具。</div></noscript>
+<div class="wrap">
+<header><div class="brand" aria-hidden="true"><svg viewBox="0 0 28 32" fill="none" stroke="#fff" stroke-width="1.2"><rect x="2" y="2" width="24" height="28" rx="1"/><rect x="6" y="6" width="16" height="10"/><path d="M6 21h6v5H6zM16 21h6M16 24h6M16 27h6"/></svg></div><div><div class="eyebrow">ARCHITECTURE BOARD STUDIO</div><h1>競圖展板提示詞</h1><div class="byline">馮世人｜朝陽科技大學建築系</div></div></header>
+<main>
+<div class="choices">
+<section class="card" aria-labelledby="layoutHeading"><h2 id="layoutHeading"><span class="index">01</span>版面配置</h2><div class="layouts" id="layoutChoices" role="group" aria-label="版面配置，單選"></div><span class="label">尺寸／比例</span><div class="chips ratios" id="formatChoices" role="group" aria-label="尺寸與比例，單選"></div></section>
+<section class="card" aria-labelledby="paletteHeading"><h2 id="paletteHeading"><span class="index">02</span>色彩風格</h2><div class="palettes" id="paletteChoices" role="group" aria-label="色彩風格，單選"></div></section>
+<section class="card" aria-labelledby="styleHeading"><h2 id="styleHeading"><span class="index">03</span>圖面語彙</h2><div class="chips" id="styleChoices" role="group" aria-label="圖面語彙，單選"></div></section>
+<section class="card" aria-labelledby="lightHeading"><h2 id="lightHeading"><span class="index">04</span>光影氛圍</h2><div class="chips" id="lightChoices" role="group" aria-label="光影氛圍，單選"></div><p class="hint" id="lightHint"></p></section>
+<section class="card" aria-labelledby="drawingHeading"><h2 id="drawingHeading"><span class="index">05</span>圖面內容 <small>可複選</small></h2><div class="chips multi" id="drawingChoices" role="group" aria-label="圖面內容，可複選，再點一次取消"></div><label class="custom-label" for="extra">補充要求（選填）</label><textarea class="extra" id="extra" maxlength="2400" rows="2" placeholder="有其他想法再填寫"></textarea></section>
+</div>
+<aside class="card output" id="result" aria-labelledby="resultHeading"><div class="output-head"><h2 id="resultHeading">你的提示詞</h2><div class="lang" role="group" aria-label="提示詞語言"><button type="button" data-lang="zh" aria-pressed="true">中文</button><button type="button" data-lang="en" aria-pressed="false">English</button></div></div><p class="output-caption">單張照片 → 完整展板。</p><div class="summary" id="summary" aria-hidden="true"></div><textarea class="prompt" id="prompt" readonly spellcheck="false" aria-label="完整提示詞"></textarea><button type="button" class="copy" id="copyBtn"><svg aria-hidden="true" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="6" width="10" height="12" rx="2"/><path d="M13 6V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span id="copyLabel">複製提示詞</span></button><p class="output-note">複製後另附原始建築／空間照片。<br>衍生圖面為設計示意，非實測或施工圖。</p></aside>
+</main>
+<footer class="footer">競圖展板提示詞・完整成品修正版｜僅組合提示詞，不生圖、不上傳資料。</footer>
+</div>
+<a class="mobile-result" id="mobileResult" href="#result">查看提示詞 ↓</a><div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script>
+'use strict';
+/*
+ * 馮世人｜競圖展板提示詞，完整成品修正版，2026-10-17。
+ * 參考原版的任務及圖面架構，程式與提示詞重新撰寫，非複製原站版型。
+ * 參考：https://jochien99.github.io/arch-poster/
+ * 對照來源：jochien99/arch-poster，index.html，buildPrompt()。
+ * 來源 SHA：88572f4f54a2f8c48f5e6bfac95d47ac1f957e4f。
+ * 關鍵修正：照片是設計參考，不是只能重排的唯一圖面。
+ * 缺少實測圖時仍完成設計示意，不輸出待填圖框；圖名使用一般製圖名稱，文字實際完成。
+ * 所有配色及圖示只用於本工具的操作介面，不作為生成影像素材。
+ */
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const DATA={
+ layout:{top:['主圖在上','hero at the top'],left:['主圖在左','hero on the left'],center:['中央主圖','a central hero'],grid:['均等網格','an equal modular grid'],story:['連續敘事','a sequential visual narrative'],collage:['自由拼貼','an asymmetric editorial collage']},
+ format:{A1p:['A1 直式','A1 portrait',594,841],A1l:['A1 橫式','A1 landscape',841,594],A0p:['A0 直式','A0 portrait',841,1189],A0l:['A0 橫式','A0 landscape',1189,841],A2p:['A2 直式','A2 portrait',420,594],A2l:['A2 橫式','A2 landscape',594,420],wide:['16:9','16:9',16,9],square:['1:1','1:1',1,1]},
+ style:{keep:['原圖風格','source-matched visual character'],photo:['寫實＋分析','photographic spatial views and analytical drawings'],collage:['競圖拼貼','architectural editorial collage'],technical:['黑白線稿','monochrome architectural drawing'],watercolor:['淡彩手繪','subtle watercolor and fine linework'],white:['全白素模','white study-model representation']},
+ light:{keep:['沿用原圖','source-matched lighting'],day:['自然日光','natural daylight'],soft:['柔和光影','soft diffuse light'],sunset:['夕陽暖光','warm sunset light'],blue:['藍調時刻','blue-hour lighting'],night:['夜間燈光','nighttime lighting']},
+ drawing:{hero:['主視覺','Hero view'],site:['基地分析','Visible-site relationships'],concept:['概念圖','Concept diagram'],master:['總平面','Site plan'],plan:['平面圖','Floor plan'],elevation:['立面圖','Elevation'],section:['剖面圖','Section'],axon:['軸測圖','Axonometric overview'],explode:['爆炸圖','Exploded layers'],circulation:['動線分析','Circulation diagram'],ecology:['環境策略','Environmental strategy'],detail:['構造細部','Detail studies'],material:['材質與光','Material and light study'],narrative:['概念短文','Concept narrative']}
+};
+const PALETTES={
+ forest:{label:'森林綠・暖白',en:'forest green and warm white',colors:['#344d3e','#9eaf8c','#ecebe1']},
+ mono:{label:'黑白・灰階',en:'black, white and grayscale',colors:['#252b29','#949b96','#eaece8']},
+ earth:{label:'砂岩・木質',en:'sandstone and warm timber tones',colors:['#766148','#bda17c','#eee6d7']},
+ blue:{label:'科技藍・灰',en:'muted technology blue and concrete gray',colors:['#3b566a','#8aadb9','#e1e6e5']},
+ rose:{label:'淡粉・玫瑰金',en:'muted blush and rose gold',colors:['#875b5b','#c99891','#f1e7e2']},
+ brass:{label:'黃銅・暖金',en:'brass and warm gold',colors:['#6f5437','#b58b52','#efe8d8']}
+};
+const layouts={top:[[3,2,44,22,1],[3,28,20,13,0],[27,28,20,13,0]],left:[[3,2,25,39,1],[32,2,15,17,0],[32,23,15,18,0]],center:[[3,2,9,39,0],[16,2,18,39,1],[38,2,9,39,0]],grid:[[3,2,20,17,0],[27,2,20,17,0],[3,23,20,18,0],[27,23,20,18,0]],story:[[3,2,22,25,1],[29,2,18,11,0],[29,17,18,10,0],[3,31,44,10,0]],collage:[[3,2,25,23,1],[32,5,15,17,0],[3,29,18,12,0],[25,26,22,15,0]]};
+
+// 與舊版分開儲存，避免「僅重排、全部待補」的舊預設延續到修正版。
+const STORAGE='feng-arch-board-complete-v4';
+const initial=()=>({layout:'top',format:'A1p',palette:'forest',style:'collage',light:'soft',drawing:['hero','axon','explode','plan','section','detail','material','narrative'],extra:'',lang:'zh'});
+let state=initial(),prompts={zh:'',en:''},timer;
+const owns=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+function normalize(raw){
+ const s=initial();if(!raw||typeof raw!=='object'||Array.isArray(raw))return s;
+ for(const k of ['layout','format','style','light'])if(typeof raw[k]==='string'&&owns(DATA[k],raw[k]))s[k]=raw[k];
+ if(typeof raw.palette==='string'&&owns(PALETTES,raw.palette))s.palette=raw.palette;
+ if(Array.isArray(raw.drawing)){
+  const valid=[...new Set(raw.drawing.filter(v=>typeof v==='string'&&owns(DATA.drawing,v)))];
+  if(valid.length)s.drawing=valid;
+ }
+ if(typeof raw.extra==='string')s.extra=raw.extra.slice(0,2400);
+ if(raw.lang==='en')s.lang='en';return s;
+}
+try{state=normalize(JSON.parse(localStorage.getItem(STORAGE)||'null'));}catch(_){/* 儲存受限不影響操作。 */}
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function drawControls(){
+ $('#layoutChoices').innerHTML=Object.entries(DATA.layout).map(([key,item])=>`<button type="button" class="layout" data-group="layout" data-value="${key}" aria-pressed="false"><svg viewBox="0 0 50 45" aria-hidden="true">${layouts[key].map(([x,y,w,h,d])=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1" fill="${d?'#577660':'#d6e0d0'}"/>`).join('')}</svg><span>${item[0]}</span></button>`).join('');
+ $('#paletteChoices').innerHTML=Object.entries(PALETTES).map(([key,p])=>`<button type="button" class="palette" data-group="palette" data-value="${key}" aria-pressed="false"><span class="swatches" aria-hidden="true">${p.colors.map(c=>`<i style="background:${c}"></i>`).join('')}</span><span>${p.label}</span></button>`).join('');
+ for(const g of ['format','style','light','drawing'])$('#'+g+'Choices').innerHTML=Object.entries(DATA[g]).map(([k,v])=>`<button type="button" class="chip" data-group="${g}" data-value="${k}" aria-pressed="false">${v[0]}</button>`).join('');
+ $('#extra').value=state.extra;
+}
+const spatialDrawings=()=>state.drawing.some(k=>['hero','axon','explode'].includes(k));
+function lightReason(){
+ if(state.style==='keep')return '原圖風格保留原有光影；衍生圖面仍會完成。';
+ if(state.style==='technical')return '黑白線稿以線條與灰階表現，不加入實景燈光。';
+ if(!spatialDrawings())return '光影用於主視覺、軸測圖或爆炸圖。';
+ return '';
+}
+
+// 每一類都描述實際要畫什麼，不僅列出圖面名稱。
+const CONTENT={
+ hero:[
+  '依參考照片製作完整主視覺，忠實保留量體輪廓、可見樓層、柱列、窗帶、開口與主要材料關係；清理影像雜訊並強化細節。不以另一棟建築取代，也不把整張參考截圖連同介面貼上。表現方式依下方風格設定。',
+  'Produce a finished primary view grounded in the reference, preserving the visible silhouette, levels, column rhythm, window bands, openings and material relationships. Improve clarity without substituting a different building or pasting an entire interface screenshot. Follow the selected representation style.'
+ ],
+ axon:[
+  '實際繪製同一建築／空間的完整軸測總圖：地坪、主結構、外牆或隔間、開口及屋頂相互對位，交代實體與挑空關係；用清楚線重和局部淡色凸顯層次。不可見部分依同一套空間邏輯簡化處理。',
+  'Draw a complete axonometric overview of the same subject. Align floor surfaces, primary structure, enclosure or partitions, openings and roof, making solids and voids readable. Use distinct line weights and restrained shading. Simplify unseen parts using the same spatial logic across views.'
+ ],
+ explode:[
+  '完成有實際構件的爆炸分層圖。依照片判斷外觀或室內，分解為約四組相應層次：外觀可用地坪／基座、柱梁／樓板、外殼／開口、屋頂；室內可用地坪、家具／展示、牆體、天花／燈具。層層沿同一軸線分離，以投影線對位並加短標註，不用幾個空方框代替構件。',
+  'Produce an exploded assembly containing actual geometric components, typically in four relevant groups. For an exterior: ground/base, columns-beams-slabs, envelope/openings, roof. For an interior: floor, furniture/display, partitions, ceiling/lighting. Separate layers along a shared axis with projection guides and brief labels; do not replace components with empty rectangles.'
+ ],
+ plan:[
+  '繪製與可見柱列、外輪廓及入口關係一致的平面示意，畫出牆、柱、開口、實體／開放區與簡化動線；以相對比例組織不可見部分，圖名直接使用「平面圖」。不要冒充原建築的實測平面，也不要為了看似專業添加無依據的尺寸。',
+  'Draw a conceptual plan consistent with the visible outline, columns and entrance relationships. Include walls, columns, openings, enclosed/open areas and simple circulation. Organize unseen areas using relative proportions and use the plain drawing title "平面圖". Do not present it as a measured original plan or invent precise dimensions.'
+ ],
+ section:[
+  '選擇能說明架高、挑空、樓板、屋頂或採光關係的位置，完成一張有剖切實體、樓地板和開口的剖面。與本板平面及軸測共用同一套空間邏輯；剖切線粗、背景線細，圖名直接使用「剖面圖」。',
+  'Complete a section at a meaningful cut through raised structure, voids, floor slabs, roof or daylight openings. Show cut solids, floor levels and openings. Use the same conceptual reconstruction as the plan and axonometric, with heavy cut lines and fine background lines. Use the plain drawing title "剖面圖".'
+ ],
+ detail:[
+  '從照片中可辨識的兩處材料或構件接合，完成至少兩張不同的細部放大圖；每張包含局部形體、接合／分層關係、引線及短註記。不可見的內部作法僅作構造設計提案，圖名直接使用「構造細部」或具體接合部位名稱，不得聲稱為原建築已確認作法。',
+  'Develop at least two distinct enlarged detail studies from visible material or component junctions. Each study must contain geometry, a joint or layer relationship, a leader and a brief note. Unseen internal assemblies are design proposals, not verified details of the original building. Use the plain title "構造細部" or the specific junction name.'
+ ],
+ material:[
+  '從照片辨識三至五種主要材質或表面，實際畫出帶紋理的樣本並加上精簡名稱；辨識不明時使用外觀描述而非捏造材質型號。配合光影表現一小組明暗或反射關係，不畫成只有空白框的色票表。',
+  'Render three to five textured samples of the main visible materials or surfaces and give each a concise label. Where identification is uncertain, describe its appearance rather than inventing a material specification. Add a compact light/shade or reflectance study, not a sheet of unfilled swatch boxes.'
+ ],
+ narrative:[
+  '實際撰寫並排入三句精簡概念短文，分別回應照片可見的形體／結構、開放與封閉關係、材料／光影。以觀察與概念解讀的語氣書寫，不代替設計者宣稱未提供的原始理念、歷史或性能成果。',
+  'Write and typeset three concise concept sentences addressing visible form/structure, open/enclosed relationships and material/light. Frame them as observations or interpretations, not undocumented claims about the designer\'s intent, history or measured performance.'
+ ],
+ site:[
+  '以照片實際可見的建築、地表、植栽或街道關係，繪製有形體、有箭頭與短註記的環境關係分析；畫出可見範圍，超出畫面的部分只作概念延伸。不捏造地址、基地紅線、北向或鄰地事實。',
+  'Draw a spatial relationship diagram showing the building, ground, planting or street actually visible in the reference, with geometry, meaningful arrows and brief notes. Limit factual content to the visible area; treat extensions as conceptual. Do not invent an address, legal boundary, north direction or neighboring-site facts.'
+ ],
+ concept:[
+  '用二至三個彼此連續的小圖，分析同一量體的實體與空隙、架高或開口關係，每個小圖均畫出建築形體的具體變化並加一行短說明；以「概念解讀」標示，不假造原設計者的實際發展歷程。',
+  'Use two or three linked diagrams to interpret solids/voids, raised massing or opening relationships in the same subject. Each diagram must show specific geometry and a short caption. Identify this as "Concept interpretation", not the original designer\'s documented design history.'
+ ],
+ master:[
+  '完成建築量體與周邊地表、植栽及接近路徑的俯視配置示意；以可見資訊為依據，未知範圍作最小必要的概念延伸，圖名直接使用「總平面圖」。不捏造正式用地界線、地籍或精確基地尺度。',
+  'Complete an overhead site-composition study showing the building, visible ground, vegetation and approach relationships. Extend unknown areas only as much as needed for the spatial study, using the plain drawing title "總平面圖". Do not invent legal boundaries, cadastral information or precise site measurements.'
+ ],
+ elevation:[
+  '將照片最清楚的主要立面轉譯為正投影立面示意，畫出柱距節奏、窗帶、開口及屋頂輪廓；不擅自新增一套完全不同的背立面。校正與遮蔽處依同一套空間邏輯簡化處理，圖名直接使用「立面圖」。',
+  'Translate the clearest visible facade into an orthographic elevation study, showing column rhythm, window bands, openings and roof silhouette. Do not invent an unrelated rear facade. Handle rectification and hidden portions consistently with the same simplified spatial model. Use the plain drawing title "立面圖".'
+ ],
+ circulation:[
+  '在有實際空間輪廓的簡化平面或軸測底圖上，以箭頭、節點和短標示呈現可辨識入口、通行與停留關係；不可見的路徑依同一套空間邏輯簡化處理，圖名直接使用「動線分析」，不要只放沒有底圖的裝飾性箭頭。',
+  'Overlay arrows, nodes and short labels on an actual simplified plan or axonometric base to show identifiable entrance, movement and pause relationships. Handle unseen paths consistently with the same simplified spatial model. Use the plain drawing title "動線分析". Avoid decorative arrows without spatial geometry.'
+ ],
+ ecology:[
+  '以照片看得到的遮蔭構件、窗帶、植栽或架高空間，繪製採光／遮蔭／通風的概念關係圖；箭頭要對應實際形體，文字表述為可能策略，不編造日照時數、風速、節能率或已驗證的環境績效。',
+  'Create a conceptual daylight, shading or airflow study grounded in visible shading elements, windows, planting or raised spaces. Tie arrows to actual geometry and describe potential strategies, not fabricated sunlight hours, wind speeds, energy savings or validated performance.'
+ ]
+};
+
+const STYLE={
+ keep:[
+  '沿用參考照片的材質色調、光影和空間氣質，主視覺保持相同辨識特徵；軸測、分解、平剖面等仍須重新繪製完成，使用與原圖協調的線稿與淡色。這是風格延續，不是只貼原圖。',
+  'Match the material tones, lighting and spatial character of the source in the main view. Still draw all requested axonometric, exploded, plan and section studies, using compatible linework and restrained tones. Source-matching preserves character; it does not mean photo-only assembly.'
+ ],
+ photo:[
+  '主視覺採自然建築攝影質感，材料有合理紋理尺度、反射與接縫，避免塑膠感；分析圖採清晰線稿搭配少量淡色剖填，形成實景與技術分析並置的展板。',
+  'Give the primary view a natural architectural photographic character with plausible texture scale, reflection and joints rather than a plastic finish. Pair it with clear analytical linework and restrained sectional fills.'
+ ],
+ collage:[
+  '主視覺結合攝影質感與克制的剪裁拼貼，衍生圖面使用細緻線稿、輕薄材質紋理和局部淡色剖填；圖與文字共同組織版面，不做一張大照片加一排排空白格子的表單。',
+  'Combine a photographic main view with restrained editorial cutouts, fine architectural linework, light material textures and selective pale fills. Integrate drawings and typography as a composed editorial board rather than a photograph above rows of empty form cells.'
+ ],
+ technical:[
+  '以黑、白、灰建立輪廓線、剖切線、投影線的粗細層級。主視覺也轉為完整的空間透視線稿；其他圖面實際畫出構件與關係，不加入攝影景深、擬真夜景或夕陽光效。配色僅用於少量註記。',
+  'Use black, white and gray with distinct outline, cut and projection line weights. Render the main view as a complete spatial perspective drawing too. Show actual components and relationships throughout, without photographic depth of field, night lighting or sunset effects. Restrict the accent palette to small annotations.'
+ ],
+ watercolor:[
+  '以可辨識的建築輪廓與清楚製圖線為骨架，加入透明淡彩、紙張質感和克制的暈染；主要圖面保持有形體、有線條的完整資訊，不以模糊色塊取代平面、剖面或細部。',
+  'Anchor the board in recognizable architecture and clear drawing lines, adding transparent watercolor, subtle paper texture and controlled washes. Keep plans, sections and details geometrically complete rather than replacing them with blurred color patches.'
+ ],
+ white:[
+  '主視覺、軸測和爆炸圖採霧面白色研究模型表現，保留原建築的幾何、開口與比例，以清楚接觸陰影表達層次；平剖面維持清楚線稿。白模只是表現方式，不代表實際材料全為白色，材質樣本仍對照原照片。',
+  'Render primary, axonometric and exploded spatial views as matte-white study models, preserving geometry, openings and proportions, with clear contact shadows. Keep plans and sections as legible drawings. White is a representational choice, not a claim that the actual building materials are white; material samples still refer to the source.'
+ ]
+};
+const LIGHT={
+ keep:['以參考照片的光環境為基礎，衍生空間圖保持一致的光源方向。','Base spatial views on the source lighting and keep their light directions consistent.'],
+ day:['使用自然日光與可信的天空補光，明暗及陰影方向一致，不同時加入夕陽、夜景與燈光主導的效果。','Use natural daylight with plausible sky fill and consistent shadows; do not combine it with sunset, night scenery or artificial-light-dominated effects.'],
+ soft:['使用柔和漫射光，保有足夠的接觸陰影與材質層次，不讓圖面淡到失去輪廓。','Use soft diffuse light while retaining contact shadows and material definition; do not wash the geometry away.'],
+ sunset:['採低角度夕陽暖光及同方向長陰影，暗部保留自然天空補光，色調不覆蓋材料辨識。','Use low-angle warm sunset light with consistently directed long shadows and natural sky fill in darker areas, retaining material legibility.'],
+ blue:['採日落後藍調時刻的微光天空；僅在已辨識的燈具或室內開口位置表達合理暖光，不新增強烈正午日光。','Use a low-light blue-hour sky after sunset. Show plausible warm light only at identifiable fixtures or interior openings, without strong midday sun.'],
+ night:['天空與戶外環境呈夜間亮度，利用照片可辨識的燈具或開口作合理照明來源，無日光、無夕陽與白天藍天。','Use nighttime sky and ambient levels with plausible illumination from visible fixtures or openings. Exclude daylight, sunset and a daytime blue sky.']
+};
+const COMPOSITION={
+ top:['主視覺置於上方，約占可用內容面積四成；下方以二至三欄放入已完成的輔助圖面與短文。主圖不可擠壓其餘圖面成為難以閱讀的縮圖。','Place the primary view above, at roughly two-fifths of the usable content area. Arrange finished supporting drawings and short text below in two or three columns. Do not shrink the remaining drawings into illegible thumbnails.'],
+ left:['主視覺在左，約占可用內容面積四成；右側與必要的下方區域安排已完成的分析、細部與文字，形成清楚的由左至右閱讀。','Use a left-hand primary view at roughly two-fifths of the usable content area, with completed analyses, details and text to the right and below as needed. Establish a clear left-to-right hierarchy.'],
+ center:['主視覺居中，約占可用內容面積三至四成；完整輔助圖面分布左右與下方，以細引線建立關聯而不遮住主要構件。','Center the primary view at roughly one-third to two-fifths of the usable content area. Place completed supporting drawings around and below it, with fine relational leaders that do not obscure geometry.'],
+ grid:['以均衡的模組對齊分配內容，不設占半張版面的巨大主圖；每格呈現實際圖面與短圖說，網格只作隱形對齊，不畫成待填的表格底圖。','Use balanced modular alignment without a giant hero occupying half the board. Every module contains actual drawings and concise captions. Use an invisible alignment grid, not a visible blank form.'],
+ story:['由概念、整體空間、組成關係到細部形成清楚閱讀路徑；透過已完成的圖面尺寸差、編號與短標題串接，不使用空框假裝設計步驟。','Build a clear reading sequence from concept and overall space to composition and detail. Use finished drawings, scale hierarchy, small sequence numbers and short headings rather than empty step boxes.'],
+ collage:['採不對稱編輯式拼貼，主次圖面大小有別、局部出框但保留完整重要輪廓；以留白整合實際圖面與文字，不做規則空格、樣板框或厚重裝飾色條。','Use asymmetric editorial collage with varied drawing sizes and carefully controlled edge breaks. Preserve important geometry and integrate actual drawings and text with whitespace, not generic empty grids, template boxes or heavy decorative bars.']
+};
+
+function generate(lang){
+ const en=lang==='en',idx=en?1:0,out=[],s=state,p=PALETTES[s.palette];
+ const add=(z,e)=>out.push(en?e:z),pair=v=>out.push(v[idx]);
+ const physical=!['wide','square'].includes(s.format),f=DATA.format[s.format];
+ const selected=['hero','concept','axon','explode','plan','section','elevation','detail','material','site','master','circulation','ecology','narrative'].filter(k=>s.drawing.includes(k));
+ const hasDerivedViews=selected.some(k=>['site','concept','master','plan','elevation','section','axon','explode','circulation','ecology','detail'].includes(k));
+
+ add('請扮演建築展板設計師。以我附上的建築／空間照片為設計參考，直接生成一張圖面、圖說及文字皆已完成的競圖海報。這是完整成品生成，不是原圖重排，也不是供人填寫的版型。',
+     'Act as an architectural presentation designer. Use my attached building or spatial photograph as the design reference and generate one finished competition poster with completed drawings, captions and typography. Create a finished composition, not a photo rearrangement or a fill-in template.');
+ add('即使只提供一張照片，也要完成以下選定內容。請先辨識照片的可見空間關係，在內部建立一致的簡化幾何，再繪製各張衍生圖面並整合排版。每個選定圖面區都應有可辨識的形體與資訊，不得以空白框、虛線格、裝飾線或低對比淡影代替。',
+     'Complete the selected content below even when only one reference photograph is supplied. First interpret the visible spatial relationships, internally form a consistent simplified geometric model, then draw the derived views and compose the poster. Every selected drawing area must contain recognizable geometry and information, not empty frames, dashed grids, decorative strokes or near-invisible ghost diagrams.');
+
+ add('\n【同一建築與空間一致性】','\n[SAME SUBJECT AND SPATIAL CONSISTENCY]');
+ add('所有圖面都必須來自同一建築／空間：可見外輪廓、柱列、窗帶、開口、主要材料及高低關係保持一致，不引入其他房間或另一棟建築。若已附平面／剖面等原圖，對應內容以原圖為準；參考照片中的介面按鈕、相框或舊展板空框不是設計內容。',
+     'Keep every view about the same building or space, preserving visible outline, column rhythm, window bands, openings, major materials and level relationships. Do not introduce unrelated rooms or another building. Where source plans or sections are supplied, follow them for the corresponding content. Interface buttons, frames and old empty poster boxes in a screenshot are not part of the design.');
+ if(hasDerivedViews)add('不可見的內部、背面或接合，允許作必要且簡化的設計延伸，以完成所選圖面；各視圖必須共用一致的空間邏輯。圖名直接使用一般製圖名稱，圖旁只保留圖名與必要的構件、材料或空間註記。省略無依據的精確尺寸、比例尺、北向與性能數值；衍生內容屬設計示意，不宣稱為實測或施工依據。',
+     'Unseen interiors, rear portions and joints may be developed only as much as needed for a simplified design study, using the same spatial logic across views. Use plain standard drawing titles and only necessary component, material or spatial notes beside the drawings. Omit unsupported precise dimensions, scale bars, north directions and performance numbers. Derived content is a design illustration, not measured or construction documentation.');
+
+ add('\n【成品版面】','\n[FINISHED COMPOSITION]');
+ add(`格式：${f[0]}${physical?`（${f[2]} × ${f[3]} mm 的長寬比例）`:''}，單張、正面平視，完整呈現展板四邊，不是展場、相框或手持海報照片。`,
+     `Format: ${f[1]}${physical?` (aspect ratio corresponding to ${f[2]} × ${f[3]} mm)`:''}. Show one complete flat, front-facing board, not an exhibition scene, framed presentation or handheld poster photograph.`);
+ if(selected.length===1){
+  add(`本次只有「${DATA.drawing[selected[0]][0]}」一項，使用完整主區域呈現它，搭配必要標題與圖說；不預留其他未選圖面的空位。`,
+      `Only "${DATA.drawing[selected[0]][1]}" is selected. Give it the main content area with necessary title and captions. Do not leave empty areas for unselected modules.`);
+ }else{
+  pair(COMPOSITION[s.layout]);
+  if(!selected.includes('hero')&&s.layout!=='grid')add('未選主視覺，版面中的主要位置改由所選圖面中最適合者使用，不額外新增透視照片。',
+     'No hero view is selected. Use the most suitable selected drawing in the primary position; do not add an unselected perspective photograph.');
+ }
+ add('圖面間留白用來分組與呼吸，不等於把整個內容區留空。線條、剖填與短圖說保持足夠對比；少用外框和粗色條，不出現用來填寫的格線。',
+     'Use whitespace to separate and organize finished content, not to leave entire content zones empty. Keep linework, sectional fills and captions legible. Minimize enclosing boxes and heavy color bars; do not show a fill-in grid.');
+ add(`色彩：${p.label}。以淺色底、黑灰線稿及少量重點色統一編排，點綴色用於分析、引線與標題；主視覺的建築材料不因此任意換色，白模表現除外。`,
+     `Palette: ${p.en}. Use a light background, dark/gray linework and restrained accents for analysis, leaders and headings. Do not arbitrarily recolor the building materials, except as part of the selected white-model representation.`);
+ pair(STYLE[s.style]);
+ if(spatialDrawings()&&s.style!=='technical'){
+  pair(LIGHT[lightReason()?'keep':s.light]);
+  add('光影設定只作用於空間視圖，不把技術線稿變成寫實夜景或讓線條消失。',
+      'Apply lighting to spatial views only, not as photorealistic night scenery over technical drawings or as an effect that erases their lines.');
+ }
+
+ add('\n【必須實際完成的內容】','\n[CONTENT TO ACTUALLY DRAW AND TYPESET]');
+ selected.forEach((key,i)=>{
+  out.push(`${i+1}. ${DATA.drawing[key][idx]}\n${CONTENT[key][idx]}`);
+ });
+ if(selected.length>10)add('內容較多，請將相關圖面編成有層級的小組，減少重複視圖；仍須讓每個選定主題有實際內容與可讀圖說。',
+     'There are many selected modules. Group related studies hierarchically and reduce redundant views while keeping actual content and legible captions for every selected topic.');
+
+ add('\n【文字直接排入成品】','\n[ACTUAL TYPOGRAPHY]');
+ add('根據照片的可見特徵擬一個簡短主標，直接排入每張圖的簡短圖名、必要的構件、材料與引線註記；文字內容必須與旁邊的圖面相符。主標、圖名、內文有清楚大小層級，不用假文字或空白橫線充當文字，不預留大塊待填文字區。',
+     'Write a concise overall title grounded in visible features. Typeset short drawing titles, necessary component names, material notes and leader annotations next to the actual content. Establish a clear title/caption/body hierarchy. Do not substitute pseudo-text, blank text lines or large unfilled text zones.');
+ add('預設使用精簡的台灣繁體中文；英文提示詞不代表展板要改成英文。只有確實無法清楚呈現某段中文字時，才以意思相同的短英文替代，保留實際文字而非留白。不要自行添加設計者姓名、學校、建築正式名稱、地址、認證或標誌。',
+     'Use concise Traditional Chinese for Taiwan by default; an English prompt does not request an English-language board. Only when a specific Chinese phrase cannot be rendered legibly, replace it with a short equivalent English label instead of leaving it blank. Do not invent designer names, schools, official building names, addresses, certifications or logos.');
+ if(s.extra.trim()){
+  add('\n【我指定的補充內容】','\n[MY ADDITIONAL INSTRUCTIONS — ORIGINAL WORDING]');
+  out.push(s.extra.trim());
+  add('以上補充優先於預設美術安排，但仍須維持同一建築與各圖面的一致性，並完成成品內容。',
+      'Apply these instructions ahead of default art direction, while keeping the same subject, maintaining consistency across drawings and completing the actual poster content.');
+ }
+ add('\n【輸出前確認】','\n[FINAL CHECK]');
+ add('逐一檢查所選圖面與短文是否真的完成；若仍有空圖框、假圖表、空白文字帶，先補成實際內容再輸出。只輸出一張完成的海報影像，不附製作說明或步驟。以可用的最高解析度生成，長邊以 4096 px 以上為目標；實際像素與印刷尺寸仍以輸出檔案為準。',
+     'Check that every selected drawing and text block is actually complete. Replace any remaining empty image frames, fake charts or blank text bands with actual content before delivery. Return only one finished poster image, without an explanatory preamble or process steps. Use the highest available image resolution, targeting a long edge of at least 4096 px; actual pixels and print dimensions are determined by the delivered file.');
+ return out.join('\n');
+}
+
+function render(){
+ const reason=lightReason();if(reason)state.light='keep';
+ for(const b of $$('[data-group]')){
+  const g=b.dataset.group,v=b.dataset.value,on=g==='drawing'?state.drawing.includes(v):state[g]===v;
+  b.setAttribute('aria-pressed',String(on));
+  if(g==='light'){b.disabled=!!reason&&v!=='keep';b.title=b.disabled?reason:'';}
+ }
+ for(const b of $$('[data-lang]'))b.setAttribute('aria-pressed',String(b.dataset.lang===state.lang));
+ $('#lightHint').textContent=reason;
+ prompts={zh:generate('zh'),en:generate('en')};
+ const box=$('#prompt');box.value=prompts[state.lang];box.lang=state.lang==='zh'?'zh-Hant-TW':'en';
+ $('#summary').innerHTML=[DATA.format[state.format][0],DATA.layout[state.layout][0],PALETTES[state.palette].label].map(v=>`<span>${esc(v)}</span>`).join('');
+ try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch(_){}
+}
+function toast(message){clearTimeout(timer);const t=$('#toast');t.textContent=message;t.hidden=false;timer=setTimeout(()=>{t.hidden=true;},3000);}
+document.addEventListener('click',event=>{
+ const b=event.target.closest('button');if(!b||b.disabled)return;
+ if(b.dataset.group){
+  const g=b.dataset.group,v=b.dataset.value;
+  if(g==='drawing'){
+   if(state.drawing.includes(v)){
+    if(state.drawing.length===1){toast('至少保留一項圖面內容。');return;}
+    state.drawing=state.drawing.filter(x=>x!==v);
+   }else state.drawing=[...state.drawing,v];
+  }else state[g]=v;
+  render();
+ }else if(b.dataset.lang){state.lang=b.dataset.lang;render();}
+});
+$('#extra').addEventListener('input',event=>{state.extra=event.target.value;render();});
+$('#copyBtn').addEventListener('click',async()=>{
+ const text=prompts[state.lang];
+ try{if(!navigator.clipboard||!window.isSecureContext)throw Error('unavailable');await navigator.clipboard.writeText(text);toast('提示詞已複製。');}
+ catch(_){
+  const el=$('#prompt');el.focus();el.select();el.setSelectionRange(0,el.value.length);
+  let ok=false;try{ok=document.execCommand('copy');}catch(_){}
+  toast(ok?'提示詞已複製。':'已選取全文，請按 Ctrl+C、⌘C 或長按複製。');
+ }
+});
+drawControls();render();
+if('IntersectionObserver' in window){new IntersectionObserver(entries=>{for(const entry of entries)$('#mobileResult').hidden=entry.isIntersecting;},{threshold:.06}).observe($('#result'));}
+</script>
+</body>
+</html>
